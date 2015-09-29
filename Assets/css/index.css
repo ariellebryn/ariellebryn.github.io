@@ -675,3 +675,19 @@ a.lilink:hover ~ .fillin .linkedin {
         display: none;
     }
 }
+
+/* Mobile Phones */
+@media screen and (max-device-width: 640px){
+    body {
+        font-size: 1.5em;
+    }
+    
+    .notebook {
+        margin-top: 20%;
+    }
+    
+    .inline-svg {
+        width: 75px;
+    }    
+    
+}
