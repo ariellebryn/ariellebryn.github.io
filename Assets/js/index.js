@@ -1,4 +1,4 @@
-var _breakpoint = 950;
+var _breakpoint = 1110;
 var projects = '.projectslink';
 var hashToLink = {
     projects1: projects,
