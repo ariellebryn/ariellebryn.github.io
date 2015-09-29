@@ -680,7 +680,11 @@ a.lilink:hover ~ .fillin .linkedin {
 /* Mobile Phones */
 @media screen and (max-device-width: 950px){
     body {
-        font-size: 2em;
+        font-size: 1.5em;
+    }
+    
+    .landing {
+        padding: 3%;
     }
     
     .notebook {
@@ -692,12 +696,16 @@ a.lilink:hover ~ .fillin .linkedin {
     }    
     
     .header {
-        padding-top: 30px;
         font-size: 1.2em;
+        height: 80px;
     }
     
-    .header.top {
-        padding-top: 10px;
+    .inline-svg {
+        width: 90px;
+    }
+    
+    .nav-name {
+        font-size: 1.1em;
     }
     
 }
