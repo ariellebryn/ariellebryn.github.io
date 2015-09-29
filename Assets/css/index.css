@@ -61,7 +61,7 @@ a:hover, .mobile-nav:hover {
 }
 
 .nav-name {
-    font-size: 1.2em;
+    font-size: 1.4em;
     font-weight: 600;
     height: auto;
     text-align: left;
@@ -132,7 +132,7 @@ a:hover, .mobile-nav:hover {
 .inline-svg {
     display: block;
     margin: 0 auto;
-    width: 35px;
+    width: 65px;
     height: auto;
     float: right;
 }
@@ -492,9 +492,10 @@ a.lilink:hover ~ .fillin .linkedin {
     .landing {
         font-size: .9em;
     }
-
-    .lightbulb {
-        margin-top: 18%;
+    
+    .notebook {
+        margin-top: 14%;
+        height: 45%;
     }
 
     .header {
