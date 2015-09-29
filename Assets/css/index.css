@@ -678,7 +678,7 @@ a.lilink:hover ~ .fillin .linkedin {
 }
 
 /* Mobile Phones */
-@media screen and (max-device-width: 640px){
+@media screen and (max-device-width: 950px){
     body {
         font-size: 2em;
     }
