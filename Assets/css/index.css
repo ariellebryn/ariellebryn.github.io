@@ -485,6 +485,10 @@ a.lilink:hover ~ .fillin .linkedin {
 }
 
 @media screen and (max-width: 1110px) {
+    body {
+        font-size: 1.2em;
+    }
+    
     .landing {
         font-size: .9em;
     }
@@ -553,14 +557,22 @@ a.lilink:hover ~ .fillin .linkedin {
     }
     
     /* About */
-    .about, .contact {
+    .about {
+        font-size: 1.4em;
+        width: 80%;
+        padding-bottom: 5%;
+    }
+    
+    .contact {
+        width: 80%;
         font-size: 1.2em;
     }
 }
 
 @media screen and (max-width: 700px) {
     .landing {
-        font-size: .7em;
+        font-size: .8em;
+        padding: 2%;
     }
 
     .notebook {
