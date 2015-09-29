@@ -40,6 +40,7 @@ a:hover, .mobile-nav:hover {
     background-color: rgba(255,255,255,1);
     padding-left: 8%;
     padding-right: 8%;
+    padding-top: 10px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -679,7 +680,7 @@ a.lilink:hover ~ .fillin .linkedin {
 /* Mobile Phones */
 @media screen and (max-device-width: 640px){
     body {
-        font-size: 1.5em;
+        font-size: 2em;
     }
     
     .notebook {
@@ -689,5 +690,14 @@ a.lilink:hover ~ .fillin .linkedin {
     .inline-svg {
         width: 75px;
     }    
+    
+    .header {
+        padding-top: 30px;
+        font-size: 1.2em;
+    }
+    
+    .header.top {
+        padding-top: 10px;
+    }
     
 }
