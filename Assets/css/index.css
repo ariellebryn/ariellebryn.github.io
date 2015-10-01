@@ -58,7 +58,7 @@ a:hover, .mobile-nav:hover {
 }
 
 .header * {
-    width: 44%;
+    width: 40%;
 }
 
 .nav-name {
@@ -278,6 +278,12 @@ a:hover, .mobile-nav:hover {
 
 /* Work */
 
+.grid.row {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .projects {
     position: relative;
     width: 100%;
@@ -453,8 +459,6 @@ a.gitlink:hover ~ .fillin .github {
 a.lilink:hover ~ .fillin .linkedin {
     display: inline-block;
 }
-
-/* Resume */
 
 /* Media Queries */
 @media screen and (max-width: 1500px) {
