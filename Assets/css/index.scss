@@ -58,7 +58,7 @@ a:hover, .mobile-nav:hover {
 }
 
 .header * {
-    width: 40%;
+    width: 44%;
 }
 
 .nav-name {
@@ -72,7 +72,7 @@ a:hover, .mobile-nav:hover {
 .nav-lightbulb {
     width: 10%;
     position: relative;
-    height: 50%;
+    height: 60%;
     opacity: 1;
     transition: opacity 0.3s;
 }
@@ -89,7 +89,7 @@ a:hover, .mobile-nav:hover {
 
 .mobile-nav {
     display: none;
-    margin-top: -10px;
+    margin-top: -20px;
 }
 
 .svg-menu-toggle {
@@ -345,6 +345,12 @@ a.worklink {
     width: 100%;
 }
 
+
+
+.col-1-3:nth-of-type(3n) {
+    margin-right: 0 !important;
+}
+
 .content {
     position: relative;
     margin: 0 auto;
@@ -498,18 +504,20 @@ a.lilink:hover ~ .fillin .linkedin {
     body {
         font-size: 1.2em;
     }
-    
+
     .landing {
         font-size: .9em;
     }
-    
+
     .notebook {
         margin-top: 14%;
         height: 45%;
     }
 
     .header {
-        height: 40px;
+        height: 60px;
+        padding-left: 3%;
+        padding-right: 3%;
     }
 
     .nav-links {
@@ -562,18 +570,18 @@ a.lilink:hover ~ .fillin .linkedin {
     .seemore {
         font-size: 1.1em;
     }
-    
+
     .col-1-3 {
         width: 100%;
     }
-    
+
     /* About */
     .about {
         font-size: 1.4em;
         width: 80%;
         padding-bottom: 5%;
     }
-    
+
     .contact {
         width: 80%;
         font-size: 1.2em;
@@ -589,7 +597,7 @@ a.lilink:hover ~ .fillin .linkedin {
     .notebook {
         margin-top: 20%;
     }
-    
+
 
     .container {
         padding: 0;
@@ -633,7 +641,7 @@ a.lilink:hover ~ .fillin .linkedin {
     .mobile-nav {
         width: 30%;
     }
-    
+
     .notebook {
         margin-top: 45%;
     }
@@ -648,7 +656,7 @@ a.lilink:hover ~ .fillin .linkedin {
     .content .desc {
         display: none;
     }
-    
+
     .content .skills {
         height: 15%;
     }
@@ -668,7 +676,7 @@ a.lilink:hover ~ .fillin .linkedin {
     .content .skills {
         display: none;
     }
-    
+
     .seemore {
         display: none;
     }
@@ -691,30 +699,30 @@ a.lilink:hover ~ .fillin .linkedin {
     body {
         font-size: 1.5em;
     }
-    
+
     .landing {
         padding: 3%;
     }
-    
+
     .notebook {
         margin-top: 20%;
     }
-    
+
     .inline-svg {
         width: 75px;
     }    
-    
+
     .header {
         font-size: 1.2em;
         height: 80px;
     }
-    
+
     .inline-svg {
         width: 90px;
     }
-    
+
     .nav-name {
         font-size: 1.1em;
     }
-    
+
 }

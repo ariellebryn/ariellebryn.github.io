@@ -18,7 +18,7 @@ body {
 
 [class*='col-'] {
 	float: left;
-	padding-right: 60px; /* column-space */
+	margin-right: 60px; /* column-space */
 }
 
 .grid {
