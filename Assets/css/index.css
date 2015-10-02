@@ -458,7 +458,7 @@ a.lilink:hover ~ .fillin .linkedin {
 /* Media Queries */
 @media screen and (max-width: 1500px) {
   .content .desc {
-    height: 45%; }
+    height: 50%; }
 
   .lightbulb {
     margin-top: 10%; } }
