@@ -72,7 +72,7 @@ a:hover, .mobile-nav:hover {
 .nav-lightbulb {
     width: 10%;
     position: relative;
-    height: 60%;
+    height: 50%;
     opacity: 1;
     transition: opacity 0.3s;
 }
@@ -345,8 +345,6 @@ a.worklink {
     width: 100%;
 }
 
-
-
 .col-1-3:nth-of-type(3n) {
     margin-right: 0 !important;
 }
@@ -527,6 +525,10 @@ a.lilink:hover ~ .fillin .linkedin {
 
     .nav-links {
         display: none;
+    }
+    
+    .nav-lightbulb {
+        height: 60%;   
     }
 
     .mobile-nav {
