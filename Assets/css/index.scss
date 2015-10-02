@@ -414,7 +414,6 @@ a.worklink:hover .content {
 .about, .contact {
     position: relative;
     margin: 0 auto;
-    margin-top: 5%;
     height: auto;
     font-size: 1.8em;
     width: 60%;
@@ -423,6 +422,12 @@ a.worklink:hover .content {
 .about {
     border-bottom: 4px solid #FFE497;
     padding: 2%;
+    padding-bottom: 3%;
+}
+
+.contact {
+    margin-top: 3%;
+    min-height: 250px;
 }
 
 .contact a {
