@@ -346,6 +346,9 @@ a.worklink {
   height: 100%;
   width: 100%; }
 
+.col-1-3 {
+  height: 100%; }
+
 .col-1-3:nth-of-type(3n) {
   margin-right: 0 !important; }
 
@@ -457,9 +460,6 @@ a.lilink:hover ~ .fillin .linkedin {
 
 /* Media Queries */
 @media screen and (max-width: 1500px) {
-  .content .desc {
-    height: 50%; }
-
   .lightbulb {
     margin-top: 10%; } }
 @media screen and (max-width: 1200px) {
