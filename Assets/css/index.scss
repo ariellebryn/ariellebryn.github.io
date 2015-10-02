@@ -279,11 +279,16 @@ a:hover, .mobile-nav:hover {
 /* Work */
 
 .grid.row {
-    max-width: 100%;
+    max-width: 2100px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.column {
+    flex-direction: column;
+}
+
 .projects {
     position: relative;
     width: 100%;
