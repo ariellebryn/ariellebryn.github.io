@@ -3,7 +3,8 @@ var projects = '.projectslink';
 var hashToLink = {
     projects1: projects,
     projects1a: projects,
-    projexts1b: projects,
+    projects1b: projects,
+    projects2: projects,
     about: '.aboutlink'
 }
 
@@ -116,14 +117,14 @@ var checkPageSize = function(isMobile) {
 
     if ((isMobile != null && !isMobile) || $(window).width() > _breakpoint) {
         $("#fullpage").fullpage({
-            anchors: ['top', 'projects1', 'about'],
+            anchors: ['top', 'projects1', 'projects2', 'about'],
             css3:true,
             scrollingSpeed: 500,
             sectionSelector: '.section'
         });
     } else {
         $("#fullpage").fullpage({
-            anchors: ['top', 'projects1', 'projects1a', 'projects1b', 'about'],
+            anchors: ['top', 'projects1', 'projects1a', 'projects1b', 'projects2', 'about'],
             css3:true,
             scrollingSpeed: 500,
             sectionSelector: '.mobile-section'
