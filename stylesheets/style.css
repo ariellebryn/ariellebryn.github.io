@@ -303,6 +303,19 @@ section#contact {
   .head .nav {
     width: 100%;
     text-align: center;
-    right: 0; } }
+    right: 0; }
+  /* line 290, C:/Users/ariel_000/Documents/Web/Arielle Chapin/ariellebryn.github.io/stylesheets/style.scss */
+  .bio {
+    width: 80%;
+    margin-bottom: 24px; }
+  /* line 295, C:/Users/ariel_000/Documents/Web/Arielle Chapin/ariellebryn.github.io/stylesheets/style.scss */
+  .overlay {
+    opacity: .7; } }
+
+@media screen and (max-width: 400px) {
+  /* line 301, C:/Users/ariel_000/Documents/Web/Arielle Chapin/ariellebryn.github.io/stylesheets/style.scss */
+  .name {
+    width: 350px;
+    height: 190px; } }
 
 /*# sourceMappingURL=style.css.map */

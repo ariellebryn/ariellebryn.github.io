@@ -286,4 +286,20 @@ section#contact {
         text-align: center;
         right: 0;
     }
+    
+    .bio {
+        width: 80%;
+        margin-bottom: 24px;
+    }
+    
+    .overlay {
+        opacity: .7;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .name {
+        width: 350px;
+        height: 190px;
+    }
 }
