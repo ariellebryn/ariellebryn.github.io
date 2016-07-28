@@ -1,0 +1,289 @@
+$fontfam-head: 'Raleway', sans-serif;
+$fontfam-main: 'Lora', serif;
+
+$rotation: 5;
+
+$dark: #212121;
+
+html, body {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    height: auto;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+    color: $dark;
+}
+
+body {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: 600;
+    font-family: $fontfam-head;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    min-height: 800px;
+}
+
+.head {
+    width: 100%;
+    top: 0;
+    position: relative;
+    height: auto;
+    text-align: center;
+}
+
+.head .nav {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.head .nav a {
+    color: $dark;
+    text-decoration: none;
+    font-family: $fontfam-head;
+    font-weight: bold;
+    margin-right: 20px;
+    opacity: 1;
+    transition: .1s;
+}
+
+.head .nav a:hover {
+    opacity: .6;
+}
+
+#main {
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.projects {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+    margin-top: 60px;
+}
+
+.block {
+    position: relative;
+    height: 370px;
+    width: 300px;
+    margin: 30px 0;
+    overflow: hidden;
+}
+
+.block:hover {
+    cursor: pointer;
+}
+
+.block.empty {
+    background-color: grey;
+}
+
+.preview {
+    position: relative;
+    width: 100%;
+    height: 256px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.block .preview {
+    background: none;
+}
+
+.block.triangle:hover .preview {
+    background:url('../imgs/triangle.svg');
+    background-size: 100% auto;
+}
+
+.block.circle:hover .preview {
+    background:url('../imgs/circle.svg');
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.block.square:hover .preview {
+    background:url('../imgs/square.svg');
+    background-size: auto 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.block .preview img {
+    width: auto;
+    height: 70%;
+    margin: 0 auto;
+}
+
+a .block .info span {
+    color: $dark;
+}
+
+@keyframes bouncey {
+    0%   {transform: rotate(0deg);}
+    25%  {transform: rotate($rotation + deg);}
+    50% {transform: rotate(0);}
+    75% {transform: rotate(-1*$rotation + deg);}
+    100% {transform: rotate(0deg);}
+}
+
+@-webkit-keyframes bouncey {
+    0%   {transform: rotate(0deg);}
+    25%  {transform: rotate($rotation + deg);}
+    50% {transform: rotate(0);}
+    75% {transform: rotate(-1*$rotation + deg);}
+    100% {transform: rotate(0deg);}
+}
+
+@-moz-keyframes bouncey {
+    0%   {transform: rotate(0deg);}
+    25%  {transform: rotate($rotation + deg);}
+    50% {transform: rotate(0);}
+    75% {transform: rotate(-1*$rotation + deg);}
+    100% {transform: rotate(0deg);}
+}
+
+.block:hover .preview img {
+    animation: bouncey 1.5s linear infinite;
+    -webkit-animation: bouncey 1.5s linear infinite;
+    -moz-animation: bouncey 1.5s linear infinite;
+}
+
+.block .info {
+    font-family: $fontfam-main;
+    width: 100%;
+    height: auto;
+    padding-top: 16px;
+}
+
+.block .info .title {
+    font-style: italic;
+    font-size: 1.2em;
+    display: block;
+}
+
+.block .info .desc {
+    display: block;
+    padding-top: 18px;
+    height: auto;
+    overflow: hidden;
+}
+
+
+section#contact {
+    height: 100%;
+    overflow: hidden;
+    background:url('../imgs/mountains.jpg');
+    background-size: cover;
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    opacity: .5;
+}
+
+.name, .bio, .icon-bar {
+    position: relative;
+    margin: 0 auto;
+}
+
+@keyframes hide {
+    0% {background:url('../imgs/name-sun-1.svg')}
+    33% {background:url('../imgs/name-sun-1.svg')}
+    33.01% {background:url('../imgs/name-sun-2.svg')}
+    66% {background:url('../imgs/name-sun-2.svg')}
+    66.01% {background:url('../imgs/name-sun-3.svg')}
+    100% {background:url('../imgs/name-sun-3.svg')}
+}
+
+@-moz-keyframes hide {
+    0% {background:url('../imgs/name-sun-1.svg')}
+    33% {background:url('../imgs/name-sun-1.svg')}
+    33.01% {background:url('../imgs/name-sun-2.svg')}
+    66% {background:url('../imgs/name-sun-2.svg')}
+    66.01% {background:url('../imgs/name-sun-3.svg')}
+    100% {background:url('../imgs/name-sun-3.svg')}
+}
+
+@-webkit-keyframes hide {
+    0% {background:url('../imgs/name-sun-1.svg')}
+    33% {background:url('../imgs/name-sun-1.svg')}
+    33.01% {background:url('../imgs/name-sun-2.svg')}
+    66% {background:url('../imgs/name-sun-2.svg')}
+    66.01% {background:url('../imgs/name-sun-3.svg')}
+    100% {background:url('../imgs/name-sun-3.svg')}
+}
+
+.name {
+    background:url('../imgs/name-sun-1.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 411px;
+    height: 220px;
+    top: 80px;
+    animation: hide 1s infinite;
+    -moz-animation: hide 1s infinite;
+    -webkit-animation: hide 1s infinite;
+}
+
+.bio {
+    width: 50%;
+    font-family: 'Hind', sans-serif;
+    font-size: 1.4em;
+    margin-top: 60px;
+}
+
+.icon-bar {
+    margin-top: 140px;
+}
+
+.icon-bar a {
+    display: inline-block;
+    margin-right: 20px;
+    color: #010101;
+    font-size: 1.4em;
+}
+
+.icon-bar a:hover {
+    color: #FFDF40;
+}
+
+@media screen and (max-width: 930px) {
+    .projects {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .head .nav  {
+        width: 100%;
+        text-align: center;
+        right: 0;
+    }
+}
