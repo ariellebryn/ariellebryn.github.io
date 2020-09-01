@@ -139,8 +139,10 @@ div.space {
   .socials {
     width: 100%;
     justify-content: center;
-    gap: 20px;
     margin: 30px 0 10px 0; }
+
+  .socials img {
+    margin-right: 20px; }
 
   .lite_about {
     width: 100%; }
