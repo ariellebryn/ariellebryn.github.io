@@ -151,13 +151,15 @@ div.space {
 }
 
 .playground_project {
-	width: 400px;
+	width: 100%;
+	max-width: 400px;
 	font-family: 'Space Mono', mono;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 
 	img {
+		width: 100%;
 		max-width: 400px;
 	}
 
