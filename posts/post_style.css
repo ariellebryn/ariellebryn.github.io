@@ -1,0 +1,81 @@
+html, body {
+text-align: left;
+position: relative;
+}
+#posts_name, #posts_subname, #posts_subname a {
+font-family: "Space Mono", monospace;
+}
+#posts_subname, #posts_subname a {
+font-size: 0.8rem;
+}
+#posts_main {
+text-align: center;
+width: 100%;
+display: flex;
+position: relative;
+flex-direction: column;
+align-items: center;
+}
+#posts_main, html, body {
+background-color: #EBD2BE;
+padding: 20px;
+box-sizing: border-box;
+width: 100%;
+position: relative;
+}
+#posts_main .post {
+position: relative;
+max-width: 650px;
+width: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+#posts_main .post h2 {
+font-size: 2rem;
+}
+#posts_main .post h3 {
+font-size: 1.2rem;
+}
+#posts_main .post h3 a {
+font-weight: 600;
+}
+#posts_main .post .subhead {
+font-size: 0.8rem;
+font-family: "Space Mono", monospace;
+margin-bottom: 20px;
+}
+#posts_main .post p {
+text-align: justify;
+line-height: 1.5em;
+}
+#posts_main .post p.quote {
+max-width: 500px;
+font-size: 1.1rem;
+position: relative;
+}
+#posts_main .post .quote_mark {
+font-weight: 800;
+font-size: 1.5em;
+padding: 0 5px;
+}
+.horiz_flex {
+display: flex;
+justify-content: space-between;
+width: 100%;
+max-width: 650px;
+margin-bottom: 20px;
+}
+.horiz_flex > div {
+margin: 6px;
+}
+.colors_avg {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-top: 10px;
+}
+.colors_avg_box {
+width:40px;
+height:40px;
+}
