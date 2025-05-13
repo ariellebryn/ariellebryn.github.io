@@ -113,10 +113,11 @@ div.space {
 }
 
 .socials {
+  padding-top: 12px;
   width: 150px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .socials img {

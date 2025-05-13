@@ -7,12 +7,14 @@ body {
   padding: 0;
   margin: 0;
   color: #212121;
-  background-color: #fa9a79; }
+  background-color: #fa9a79;
+}
 
 body {
   font: 100% "noahregular", Helvetica, sans-serif;
   font-size: 1.3em;
-  color: #212121; }
+  color: #212121;
+}
 
 #main {
   z-index: 0;
@@ -23,106 +25,128 @@ body {
   border-style: solid;
   border-width: 16px;
   border-color: #fa9a79;
-  padding: 5% 10%; }
+  padding: 5% 10%;
+}
 
 section {
-  margin-top: 100px; }
+  margin-top: 100px;
+}
 
-h1, h2 {
+h2,
+h1 {
   font: 100% "Alice", serif;
   font-size: 2.2em;
   font-weight: 600;
-  letter-spacing: 0.03em; }
+  letter-spacing: 0.03em;
+}
 
 h2 {
-  text-decoration: underline; }
+  text-decoration: underline;
+}
 
 a {
   font: 100% "noahregular", Helvetica, sans-serif;
-  color: #212121; }
+  color: #212121;
+}
 
 b {
   font: 100% "noahbold", Helvetica, sans-serif;
-  font-weight: 600; }
+  font-weight: 600;
+}
 
 .b_i {
   font: 100% "noahbold_italic", Helvetica, sans-serif;
   font-weight: 600;
-  font-style: italic; }
+  font-style: italic;
+}
 
 div.space {
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+}
 
 /* blobbies */
 .blobbies {
   position: absolute;
   left: 10px;
   top: 10px;
-  z-index: -1; }
+  z-index: -1;
+}
 
 .blobbies img {
   height: 150px;
   width: auto;
-  position: absolute; }
+  position: absolute;
+}
 
 .blobbies .blob-top {
-  left: 15px; }
+  left: 15px;
+}
 
 .blobbies .blob-bottom {
   left: 100px;
-  top: 20px; }
+  top: 20px;
+}
 
 /* sections */
 .page_header {
   right: 0;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
   align-items: center;
   margin: 0;
   padding: 0;
-  padding-left: 100px; }
+  padding-left: 100px;
+}
 
 .socials {
+  padding-top: 12px;
   width: 150px;
   display: flex;
   align-items: center;
-  justify-content: space-between; }
+}
 
 .socials img {
   width: 20px;
-  height: 20px; }
+  height: 20px;
+}
 
 .lite_about {
   position: relative;
-  width: 50%; }
+  width: 50%;
+}
 
 span.pgrnd_text,
 span.pgrnd_text a {
   font-family: "Space Mono", mono;
   text-decoration: none;
-  font-size: 0.9em; }
+  font-size: 0.9em;
+}
 
 .project {
-  margin: 50px 0px 100px 0; }
-  .project .images {
-    margin-bottom: 10px; }
-  .project .images img {
-    height: 250px;
-    width: auto;
-    margin-right: 10px; }
-  .project .title,
-  .project a .title {
-    font: 100% "Alice", serif;
-    font-size: 1.2em;
-    margin: 20px 0 10px 0;
-    text-decoration: none; }
-  .project .desc {
-    width: 70%; }
-  .project .extras {
-    font: 100% "noahregular_italic", Helvetica, sans-serif;
-    font-style: italic;
-    margin-top: 10px; }
+  margin: 50px 0px 100px 0;
+}
+.project .images {
+  margin-bottom: 10px;
+}
+.project .images img {
+  height: 250px;
+  width: auto;
+  margin-right: 10px;
+}
+.project .title,
+.project a .title {
+  font: 100% "Alice", serif;
+  font-size: 1.2em;
+  margin: 20px 0 10px 0;
+  text-decoration: none;
+}
+.project .desc {
+  width: 70%;
+}
+.project .extras {
+  font: 100% "noahregular_italic", Helvetica, sans-serif;
+  font-style: italic;
+  margin-top: 10px;
+}
 
 .copyright {
   font: 100% "noahregular", Helvetica, sans-serif;
@@ -130,41 +154,48 @@ span.pgrnd_text a {
   font-size: 0.6em;
   width: 100%;
   padding-bottom: 20px;
-  text-align: center; }
-  .copyright a {
-    color: white; }
+  text-align: center;
+}
+.copyright a {
+  color: white;
+}
 
 /* media sizes */
 @media screen and (max-width: 900px) {
   div.space {
-    margin-bottom: 20px; }
-
+    margin-bottom: 20px;
+  }
   .page_header {
     display: block;
     padding-left: 0;
-    padding-top: 50px; }
-
+    padding-top: 50px;
+  }
   .socials {
     width: 100%;
     justify-content: center;
-    margin: 30px 0 10px 0; }
-
+    margin: 30px 0 10px 0;
+  }
   .socials img {
-    margin-right: 20px; }
-
+    margin-right: 20px;
+  }
   .lite_about {
-    width: 100%; }
-
+    width: 100%;
+  }
   .project .desc {
-    width: 100%; }
+    width: 100%;
+  }
   .project .extras {
-    margin-top: 20px; }
+    margin-top: 20px;
+  }
   .project .images {
     height: auto;
-    width: 100%; }
-    .project .images img {
-      width: 100%;
-      height: auto;
-      margin-bottom: 10px; } }
+    width: 100%;
+  }
+  .project .images img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */
