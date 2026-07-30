@@ -1,0 +1,9 @@
+/* Global resets — add your own as you go */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
