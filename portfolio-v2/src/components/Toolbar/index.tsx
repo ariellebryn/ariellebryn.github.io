@@ -170,7 +170,11 @@ const TOOLBAR_WIDTH =
   TOGGLE_WIDTH;
 
 const MOBILE_TOOLBAR_WIDTH =
-  TOGGLE_WIDTH + TOOLBAR_ROW_GAP + MOBILE_TOOLS_PILL_WIDTH + TOOLBAR_ROW_GAP + TOGGLE_WIDTH;
+  TOGGLE_WIDTH +
+  TOOLBAR_ROW_GAP +
+  MOBILE_TOOLS_PILL_WIDTH +
+  TOOLBAR_ROW_GAP +
+  TOGGLE_WIDTH;
 
 // ─── styles ───────────────────────────────────────────────────────────────────
 
@@ -654,8 +658,7 @@ export function Toolbar({
     winWidth / 2 + DESKTOP_PILLS_WIDTH / 2 + TOOLBAR_ROW_GAP;
   // While the row is packed/scrolling there's no centred pills group to hug, so
   // keep the button in its by-the-toggle spot.
-  const scrollLeft =
-    hidden || needsScroll ? scrollLeftHidden : scrollLeftOpen;
+  const scrollLeft = hidden || needsScroll ? scrollLeftHidden : scrollLeftOpen;
 
   const scrollTopButton = (
     <Pill $dark>
@@ -715,129 +718,130 @@ export function Toolbar({
             $hidden={hidden}
             $width={isMobile ? MOBILE_TOOLS_PILL_WIDTH : TOOLS_PILL_WIDTH}
           >
-          <Pill $dark style={{ position: "relative", ...collapseStyle }}>
-            {TOOL_DEFS.map((def) => {
-              const Icon = def.icon;
-              if (def.key === "mirror") {
+            <Pill $dark style={{ position: "relative", ...collapseStyle }}>
+              {TOOL_DEFS.map((def) => {
+                const Icon = def.icon;
+                if (def.key === "mirror") {
+                  return (
+                    <Tip key={def.key} label={def.label}>
+                      <ToolBtn $active={symmetry} onClick={onSymmetryToggle}>
+                        <Icon size={ICON} stroke={1.75} />
+                      </ToolBtn>
+                    </Tip>
+                  );
+                }
+                const t = def.key as Tool;
+                const onClick =
+                  t === "stamp" ? selectStamp : () => selectTool(t);
                 return (
                   <Tip key={def.key} label={def.label}>
-                    <ToolBtn $active={symmetry} onClick={onSymmetryToggle}>
+                    <ToolBtn $active={tool === t} onClick={onClick}>
                       <Icon size={ICON} stroke={1.75} />
                     </ToolBtn>
                   </Tip>
                 );
-              }
-              const t = def.key as Tool;
-              const onClick = t === "stamp" ? selectStamp : () => selectTool(t);
-              return (
-                <Tip key={def.key} label={def.label}>
-                  <ToolBtn $active={tool === t} onClick={onClick}>
-                    <Icon size={ICON} stroke={1.75} />
-                  </ToolBtn>
-                </Tip>
-              );
-            })}
+              })}
 
-            <GroupDivider />
+              <GroupDivider />
 
-            {HISTORY_DEFS.map((def) => {
-              const Icon = def.icon;
-              const isUndo = def.key === "undo";
-              return (
-                <Tip key={def.key} label={def.label}>
-                  <ToolBtn
-                    $active={false}
-                    $disabled={isUndo ? !canUndo : !canRedo}
-                    onClick={isUndo ? onUndo : onRedo}
-                  >
-                    <Icon size={ICON} stroke={1.75} />
-                  </ToolBtn>
-                </Tip>
-              );
-            })}
-
-            <GroupDivider />
-
-            {UTILITY_DEFS.map((def) => {
-              const Icon = def.icon;
-              return (
-                <Tip key={def.key} label={def.label}>
-                  <ToolBtn $active={false} onClick={onClear}>
-                    <Icon size={ICON} stroke={1.75} />
-                  </ToolBtn>
-                </Tip>
-              );
-            })}
-
-            {/* ── stamp shape flyout ── */}
-            {tool === "stamp" && stampMenuOpen && (
-              <StampFlyout>
-                <Pill $dark>
-                  <Tip label="sparkle">
-                    <ShapeBtn
-                      $active={stampShape === "star"}
-                      onClick={() => onStampShapeChange("star")}
+              {HISTORY_DEFS.map((def) => {
+                const Icon = def.icon;
+                const isUndo = def.key === "undo";
+                return (
+                  <Tip key={def.key} label={def.label}>
+                    <ToolBtn
+                      $active={false}
+                      $disabled={isUndo ? !canUndo : !canRedo}
+                      onClick={isUndo ? onUndo : onRedo}
                     >
-                      <StampPreview shape="star" />
-                    </ShapeBtn>
+                      <Icon size={ICON} stroke={1.75} />
+                    </ToolBtn>
                   </Tip>
-                  <Tip label="heart">
-                    <ShapeBtn
-                      $active={stampShape === "heart"}
-                      onClick={() => onStampShapeChange("heart")}
-                    >
-                      <StampPreview shape="heart" />
-                    </ShapeBtn>
-                  </Tip>
-                  <Tip label="gem">
-                    <ShapeBtn
-                      $active={stampShape === "diamond"}
-                      onClick={() => onStampShapeChange("diamond")}
-                    >
-                      <StampPreview shape="diamond" />
-                    </ShapeBtn>
-                  </Tip>
-                  <Tip label="lil x">
-                    <ShapeBtn
-                      $active={stampShape === "x"}
-                      onClick={() => onStampShapeChange("x")}
-                    >
-                      <StampPreview shape="x" />
-                    </ShapeBtn>
-                  </Tip>
-                </Pill>
-              </StampFlyout>
-            )}
+                );
+              })}
 
-            {/* ── mobile-only: colour palette collapses into a single button ── */}
-            {isMobile && (
-              <>
-                <GroupDivider />
-                <Tip label={`color: ${currentColorName}`}>
-                  <ColorPreviewBtn $color={color} onClick={toggleColorMenu} />
-                </Tip>
-              </>
-            )}
+              <GroupDivider />
 
-            {isMobile && colorMenuOpen && (
-              <ColorFlyout>
-                <Pill>
-                  {PALETTE.map((c) => (
-                    <Tip key={c.hex} label={c.name}>
-                      <Swatch
-                        $color={c.hex}
-                        $active={color === c.hex}
-                        onClick={() => {
-                          onColorChange(c.hex);
-                          setColorMenuOpen(false);
-                        }}
-                      />
+              {UTILITY_DEFS.map((def) => {
+                const Icon = def.icon;
+                return (
+                  <Tip key={def.key} label={def.label}>
+                    <ToolBtn $active={false} onClick={onClear}>
+                      <Icon size={ICON} stroke={1.75} />
+                    </ToolBtn>
+                  </Tip>
+                );
+              })}
+
+              {/* ── stamp shape flyout ── */}
+              {tool === "stamp" && stampMenuOpen && (
+                <StampFlyout>
+                  <Pill $dark>
+                    <Tip label="plus">
+                      <ShapeBtn
+                        $active={stampShape === "plus"}
+                        onClick={() => onStampShapeChange("plus")}
+                      >
+                        <StampPreview shape="plus" />
+                      </ShapeBtn>
                     </Tip>
-                  ))}
-                </Pill>
-              </ColorFlyout>
-            )}
-          </Pill>
+                    <Tip label="heart">
+                      <ShapeBtn
+                        $active={stampShape === "heart"}
+                        onClick={() => onStampShapeChange("heart")}
+                      >
+                        <StampPreview shape="heart" />
+                      </ShapeBtn>
+                    </Tip>
+                    <Tip label="gem">
+                      <ShapeBtn
+                        $active={stampShape === "diamond"}
+                        onClick={() => onStampShapeChange("diamond")}
+                      >
+                        <StampPreview shape="diamond" />
+                      </ShapeBtn>
+                    </Tip>
+                    <Tip label="lil x">
+                      <ShapeBtn
+                        $active={stampShape === "x"}
+                        onClick={() => onStampShapeChange("x")}
+                      >
+                        <StampPreview shape="x" />
+                      </ShapeBtn>
+                    </Tip>
+                  </Pill>
+                </StampFlyout>
+              )}
+
+              {/* ── mobile-only: colour palette collapses into a single button ── */}
+              {isMobile && (
+                <>
+                  <GroupDivider />
+                  <Tip label={`color: ${currentColorName}`}>
+                    <ColorPreviewBtn $color={color} onClick={toggleColorMenu} />
+                  </Tip>
+                </>
+              )}
+
+              {isMobile && colorMenuOpen && (
+                <ColorFlyout>
+                  <Pill>
+                    {PALETTE.map((c) => (
+                      <Tip key={c.hex} label={c.name}>
+                        <Swatch
+                          $color={c.hex}
+                          $active={color === c.hex}
+                          onClick={() => {
+                            onColorChange(c.hex);
+                            setColorMenuOpen(false);
+                          }}
+                        />
+                      </Tip>
+                    ))}
+                  </Pill>
+                </ColorFlyout>
+              )}
+            </Pill>
           </CollapsibleWrap>
 
           {/* ── colour palette pill (desktop only — collapses into a button on mobile) ── */}
@@ -856,7 +860,6 @@ export function Toolbar({
               </Pill>
             </CollapsibleWrap>
           )}
-
         </PillsGroup>
 
         {/* ── visibility toggle — always visible, not affected by $hidden ── */}
@@ -884,7 +887,10 @@ export function Toolbar({
              pills' centering; slides between left-of-pills and left-of-toggle.
              Desktop only — mobile keeps its own bottom-right spot. ── */}
         {!isMobile && (
-          <ScrollTopFloat $visible={scrolled} style={{ left: `${scrollLeft}px` }}>
+          <ScrollTopFloat
+            $visible={scrolled}
+            style={{ left: `${scrollLeft}px` }}
+          >
             {scrollTopButton}
           </ScrollTopFloat>
         )}

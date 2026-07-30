@@ -56,7 +56,7 @@ export function LandingPage({ tool }: Props) {
           libraries, a <strong>real-time collaborative editor</strong>, a
           GraphQL client. Before that <strong>iOS</strong> at{" "}
           <strong>Instagram</strong> and <strong>Facebook</strong>, on camera
-          modes and creator tools.
+          modes and creator tools. Hobbyist game developer.
         </Bio>
       </Inner>
     </Wrapper>

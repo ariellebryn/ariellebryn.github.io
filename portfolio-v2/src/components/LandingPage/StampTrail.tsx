@@ -133,7 +133,7 @@ const RAW_CURVE: { x: number; y: number }[] = [
   { x: 0.849, y: 0.374 },
 ];
 
-const STAMP_ORDER: StampShape[] = ["star"];
+const STAMP_ORDER: StampShape[] = ["plus"];
 const STAMP_COUNT = 16;
 const STAMP_SIZE = 8; // px, viewBox units
 const CURVE_WIDTH = 240; // px, viewBox units — actual rendered size set via CSS % on Wrap
