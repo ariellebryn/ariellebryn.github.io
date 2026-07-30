@@ -134,14 +134,32 @@ const TOOLS_PILL_WIDTH = pillWidth({
 });
 const COLOR_PILL_WIDTH = pillWidth({ buttons: PALETTE.length, bordered: true });
 const TOGGLE_WIDTH = CELL + 8; // matches ToggleBtn's own size formula
+const SCROLL_PILL_WIDTH = pillWidth({ buttons: 1 }); // the lone scroll-to-top pill
 
-// ToolbarContainer is a 3-item flex row — [Spacer][pills group][toggle] —
-// with justify-content:space-between, so the toggle always sits at the
-// container's right edge and a transparent Spacer (matching the toggle's own
-// width) on the left keeps the pills group visually centered between them.
-// Below the point where all 3 items no longer fit, space-between falls back
-// to packing them together (with the scrollbar taking over) — see
-// ToolbarContainer's comment.
+// Desktop pills group's total on-screen width (tools + gap + colour), used to
+// derive the scroll button's "open" resting spot just left of that group.
+const DESKTOP_PILLS_WIDTH =
+  TOOLS_PILL_WIDTH + TOOLBAR_ROW_GAP + COLOR_PILL_WIDTH;
+const CONTAINER_PADDING_X = 12; // px — ToolbarContainer's own left/right padding
+
+// Mobile: colour palette collapses into one extra button (+ its own divider)
+// inside the tools pill instead of living in a separate pill, so the pill
+// itself is wider than the desktop TOOLS_PILL_WIDTH.
+const MOBILE_TOOLS_PILL_WIDTH = pillWidth({
+  buttons: TOOLS_BUTTON_COUNT + 1,
+  dividers: TOOLS_DIVIDER_COUNT + 1,
+  bordered: false,
+});
+
+// ToolbarContainer is a 3-item flex row — [Spacer][pills group][toggle] — with
+// justify-content:space-between, so the toggle always sits at the container's
+// right edge and a transparent Spacer (equal to the toggle's own width) on the
+// left keeps the pills group visually centered between them. The scroll-to-top
+// button is NOT a flex child: it's absolutely positioned (out of flow, so it
+// never disturbs this centering) and slid between two derived x-positions —
+// right of the pills while open, left of the toggle while hidden. Below the
+// point where all items no longer fit, space-between falls back to packing them
+// together (with the scrollbar taking over) — see ToolbarContainer's comment.
 const TOOLBAR_WIDTH =
   TOGGLE_WIDTH +
   TOOLBAR_ROW_GAP +
@@ -151,18 +169,8 @@ const TOOLBAR_WIDTH =
   TOOLBAR_ROW_GAP +
   TOGGLE_WIDTH;
 
-// Mobile: colour palette collapses into one extra button (+ its own divider)
-// inside the tools pill instead of living in a separate pill.
 const MOBILE_TOOLBAR_WIDTH =
-  TOGGLE_WIDTH +
-  TOOLBAR_ROW_GAP +
-  pillWidth({
-    buttons: TOOLS_BUTTON_COUNT + 1,
-    dividers: TOOLS_DIVIDER_COUNT + 1,
-    bordered: false,
-  }) +
-  TOOLBAR_ROW_GAP +
-  TOGGLE_WIDTH;
+  TOGGLE_WIDTH + TOOLBAR_ROW_GAP + MOBILE_TOOLS_PILL_WIDTH + TOOLBAR_ROW_GAP + TOGGLE_WIDTH;
 
 // ─── styles ───────────────────────────────────────────────────────────────────
 
@@ -226,6 +234,23 @@ const PillsGroup = styled.div`
   align-items: flex-start;
   gap: 8px;
   flex-shrink: 0;
+`;
+
+/**
+ * Shrinks a pill's own layout box away (not just its opacity) when the
+ * toolbar's hidden, so the row visibly closes up instead of leaving a dead
+ * gap where the pill used to be. $width is the pill's own known, derived
+ * width (TOOLS_PILL_WIDTH / COLOR_PILL_WIDTH / MOBILE_TOOLS_PILL_WIDTH), so
+ * nothing here is measured. overflow only switches to hidden while actually
+ * hidden — while open it stays visible so the stamp/colour flyouts
+ * (position:absolute, taller than the pill itself) aren't clipped, which is
+ * safe since those flyouts can only be open while the toolbar itself is open.
+ */
+const CollapsibleWrap = styled.div<{ $hidden: boolean; $width: number }>`
+  max-width: ${({ $hidden, $width }) => ($hidden ? "0px" : `${$width}px`)};
+  overflow: ${({ $hidden }) => ($hidden ? "hidden" : "visible")};
+  flex-shrink: 0;
+  transition: max-width 220ms ease;
 `;
 
 const Pill = styled.div<{ $dark?: boolean }>`
@@ -467,19 +492,24 @@ function Tip({
 // ─── scroll-to-top pill ─────────────────────────────────────────────────────────
 
 /**
- * Desktop: a normal flex child of ToolbarContainer now, sitting between the
- * colour pill and the visibility toggle — it scrolls with everything else
- * instead of needing its own fixed-position dock math. max-width (not
- * display/visibility) is what animates it in and out, so the row reflows
- * smoothly instead of jumping.
+ * Desktop: absolutely positioned inside ToolbarContainer (out of the flex
+ * flow, so it never affects the pills' centering) and slid horizontally by
+ * animating `left`. Its two resting x-positions are derived from
+ * window.innerWidth + the known pill/toggle widths (no DOM measuring): just
+ * right of the centred pills group while the toolbar's open, and just left of
+ * the toggle once it's hidden. The `left` transition is timed to the pills'
+ * max-width collapse so the slide and the collapse read as one motion. opacity
+ * + scale handle its scroll-triggered fade-in independently of the slide.
  */
-const ScrollTopInline = styled.div<{ $visible: boolean }>`
-  max-width: ${({ $visible }) => ($visible ? "32px" : "0px")};
+const ScrollTopFloat = styled.div<{ $visible: boolean }>`
+  position: absolute;
+  top: 0;
+  z-index: 3;
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
   transform: ${({ $visible }) => ($visible ? "scale(1)" : "scale(0.85)")};
   pointer-events: ${({ $visible }) => ($visible ? "auto" : "none")};
   transition:
-    max-width 200ms ease,
+    left 220ms ease,
     opacity 150ms ease-out,
     transform 150ms ease-out;
 `;
@@ -565,6 +595,9 @@ export function Toolbar({
   const [colorMenuOpen, setColorMenuOpen] = useState(false);
   const [stampMenuOpen, setStampMenuOpen] = useState(false);
   const [needsScroll, setNeedsScroll] = useState(false);
+  const [winWidth, setWinWidth] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth : 1024,
+  );
 
   useEffect(() => {
     const onScroll = () =>
@@ -593,7 +626,10 @@ export function Toolbar({
   // ToolbarContainer's comment).
   useEffect(() => {
     const threshold = (isMobile ? MOBILE_TOOLBAR_WIDTH : TOOLBAR_WIDTH) + 24;
-    const check = () => setNeedsScroll(window.innerWidth < threshold);
+    const check = () => {
+      setNeedsScroll(window.innerWidth < threshold);
+      setWinWidth(window.innerWidth);
+    };
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
@@ -602,6 +638,24 @@ export function Toolbar({
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
   const currentColorName =
     PALETTE.find((c) => c.hex === color)?.name ?? "color";
+
+  // Desktop scroll button's slid x-position (its left edge, measured from the
+  // container's padding box i.e. viewport x=0). Both endpoints are derived from
+  // the viewport width + known widths, never measured. "open" = one row-gap
+  // right of the centred pills group; "hidden"/scrolling = one row-gap left of
+  // the toggle (which itself sits a container-padding in from the right edge).
+  const scrollLeftHidden =
+    winWidth -
+    CONTAINER_PADDING_X -
+    TOGGLE_WIDTH -
+    TOOLBAR_ROW_GAP -
+    SCROLL_PILL_WIDTH;
+  const scrollLeftOpen =
+    winWidth / 2 + DESKTOP_PILLS_WIDTH / 2 + TOOLBAR_ROW_GAP;
+  // While the row is packed/scrolling there's no centred pills group to hug, so
+  // keep the button in its by-the-toggle spot.
+  const scrollLeft =
+    hidden || needsScroll ? scrollLeftHidden : scrollLeftOpen;
 
   const scrollTopButton = (
     <Pill $dark>
@@ -657,6 +711,10 @@ export function Toolbar({
 
         <PillsGroup>
           {/* ── tools pill ── */}
+          <CollapsibleWrap
+            $hidden={hidden}
+            $width={isMobile ? MOBILE_TOOLS_PILL_WIDTH : TOOLS_PILL_WIDTH}
+          >
           <Pill $dark style={{ position: "relative", ...collapseStyle }}>
             {TOOL_DEFS.map((def) => {
               const Icon = def.icon;
@@ -780,28 +838,25 @@ export function Toolbar({
               </ColorFlyout>
             )}
           </Pill>
+          </CollapsibleWrap>
 
           {/* ── colour palette pill (desktop only — collapses into a button on mobile) ── */}
           {!isMobile && (
-            <Pill style={collapseStyle}>
-              {PALETTE.map((c) => (
-                <Tip key={c.hex} label={c.name}>
-                  <Swatch
-                    $color={c.hex}
-                    $active={color === c.hex}
-                    onClick={() => onColorChange(c.hex)}
-                  />
-                </Tip>
-              ))}
-            </Pill>
+            <CollapsibleWrap $hidden={hidden} $width={COLOR_PILL_WIDTH}>
+              <Pill style={collapseStyle}>
+                {PALETTE.map((c) => (
+                  <Tip key={c.hex} label={c.name}>
+                    <Swatch
+                      $color={c.hex}
+                      $active={color === c.hex}
+                      onClick={() => onColorChange(c.hex)}
+                    />
+                  </Tip>
+                ))}
+              </Pill>
+            </CollapsibleWrap>
           )}
 
-          {/* ── scroll-to-top (desktop: in-row; mobile keeps its own bottom-right spot) ── */}
-          {!isMobile && (
-            <ScrollTopInline $visible={scrolled}>
-              {scrollTopButton}
-            </ScrollTopInline>
-          )}
         </PillsGroup>
 
         {/* ── visibility toggle — always visible, not affected by $hidden ── */}
@@ -824,6 +879,15 @@ export function Toolbar({
             </IconPop>
           </ToggleBtn>
         </Tip>
+
+        {/* ── scroll-to-top: floated (out of flow) so it never affects the
+             pills' centering; slides between left-of-pills and left-of-toggle.
+             Desktop only — mobile keeps its own bottom-right spot. ── */}
+        {!isMobile && (
+          <ScrollTopFloat $visible={scrolled} style={{ left: `${scrollLeft}px` }}>
+            {scrollTopButton}
+          </ScrollTopFloat>
+        )}
       </ToolbarContainer>
 
       {isMobile && (

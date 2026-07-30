@@ -50,17 +50,17 @@ const Cell = styled.div`
 `;
 
 const projects = [
-  {
-    name: "Marginalia",
-    category: "side project",
-    description: (
-      <>
-        Server-owned context management, swappable model providers, background
-        concept extraction, Langfuse tracing. An agent that reads with you.{" "}
-        <a href="#">Live</a> · <a href="#">Repo</a>
-      </>
-    ),
-  },
+  //   {
+  //     name: "Marginalia",
+  //     category: "side project",
+  //     description: (
+  //       <>
+  //         Server-owned context management, swappable model providers, background
+  //         concept extraction, Langfuse tracing. An agent that reads with you.{" "}
+  //         <a href="#">Live</a> · <a href="#">Repo</a>
+  //       </>
+  //     ),
+  //   },
   {
     name: "Sayari",
     category: "current role",
@@ -89,31 +89,39 @@ const projects = [
     name: "critter grid game",
     category: "side project",
     description: (
-      <ul>
-        <li>deductive logic puzzle game (think sudoku!) for the browser</li>
-        <li>built with react + typescript</li>
-      </ul>
+      <>
+        <ul>
+          <li>deductive logic puzzle game (think sudoku!) for the browser</li>
+          <li>built with react + typescript</li>
+        </ul>
+        <a href="https://crittergrid.com/" target="_blank" rel="noreferrer">
+          Play it
+        </a>
+      </>
     ),
   },
   {
     name: "reader",
     category: "side project",
     description: (
-      <ul>
-        <li>
-          chrome extension (private, built for a friend c:) that tracks the
-          articles you read, finds connections in your reading patterns,
-          provides data visualizations
-        </li>
-        <li>
-          a monthly "wrapped" that shows your favorite authors, rabbit holes you
-          got into, etc
-        </li>
-        <li>
-          uses a local browser-based LLM to identify when a page is an article,
-          assign topics and tags, and build out "rabbit holes"
-        </li>
-      </ul>
+      <>
+        <ul>
+          <li>
+            chrome extension (private, built for a friend ✨) that tracks the
+            articles you read, finds connections in your reading patterns,
+            provides data visualizations
+          </li>
+          <li>
+            a monthly "wrapped" that shows your favorite authors, rabbit holes
+            you got into, etc
+          </li>
+          <li>
+            uses a local browser-based LLM to identify when a page is an
+            article, assign topics and tags, and build out "rabbit holes"
+          </li>
+        </ul>
+        (blog post pending)
+      </>
     ),
   },
   {
@@ -153,7 +161,7 @@ const projects = [
           target="_blank"
           rel="noreferrer"
         >
-          Live
+          View it
         </a>
       </ul>
     ),
@@ -165,36 +173,28 @@ const projects = [
       <>
         <ul>
           <li>
-            iOS engineer, built instagram camera formats (Layout, Dual Camera)
-            for use in instagram stories
+            iOS engineer, built instagram camera formats (
+            <a
+              href="https://www.engadget.com/2019-12-17-instagram-stories-layout-feature.html"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Layout
+            </a>
+            , Dual Camera) for use in instagram stories
           </li>
           <li>
-            worked on Facebook Group features for iOS and across the stack
+            worked on Facebook Group features, such as{" "}
+            <a
+              href="https://www.digitalinformationworld.com/2019/08/facebook-more-new-badges-pages.html"
+              target="_blank"
+              rel="noreferrer"
+            >
+              badges
+            </a>
+            , for iOS and across the stack
           </li>
         </ul>
-        <a
-          href="https://www.engadget.com/2019-12-17-instagram-stories-layout-feature.html"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Stories layout
-        </a>{" "}
-        ·{" "}
-        <a
-          href="https://www.engadget.com/2017-11-16-facebooks-creator-app-video-stars-content.html"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Creator app
-        </a>{" "}
-        ·{" "}
-        <a
-          href="https://www.digitalinformationworld.com/2019/08/facebook-more-new-badges-pages.html"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Badges
-        </a>
       </>
     ),
   },
@@ -203,20 +203,18 @@ const projects = [
     category: "freelance",
     description: (
       <>
-        <ul>
-          <li>freelance project for ... </li>
-          <li>
-            shows user-submitted "climate conversations" on an interactive
-            global map
-          </li>
-          <li>built with Firestore, React, and Google-based auth</li>
-        </ul>
+        Built on the idea that the biggest barrier to climate action is the
+        assumption that nobody else is talking about it. Walks people through
+        having a real conversation about climate change with someone outside
+        their usual circle then logs it to a live, interactive map alongside
+        everyone else's.
+        <br />
         <a
           href="https://talkclimatechange.org/"
           target="_blank"
           rel="noreferrer"
         >
-          Live
+          View it
         </a>
       </>
     ),
@@ -227,7 +225,7 @@ const projects = [
     description: (
       <>
         A series of history video essays — research, scripting, and editing, all
-        self-taught.{" "}
+        self-taught. <br />
         <a href="https://vimeo.com/464018809" target="_blank" rel="noreferrer">
           Watch
         </a>
@@ -239,7 +237,30 @@ const projects = [
     category: "academic",
     description: (
       <>
-        Peer-reviewed paper on TEI-encoded document markup, published 2017.{" "}
+        HCI Honors Thesis, shown at{" "}
+        <a
+          href="https://tei.acm.org/2017/cp-sdc.php"
+          target="_blank"
+          rel="noreferrer"
+        >
+          the 2017 TEI conference Student Design Challenge
+        </a>
+        :
+        <ul>
+          <li>
+            developed a prototype wall of motorized blocks that reconfigure into
+            custom 3D surfaces
+          </li>
+          <li>
+            evaluated how manual vs. automated and touch vs. touchless controls
+            impact user comfort and control
+          </li>
+          <li>
+            discovered that while "magical" manual interaction is highly
+            engaging, automated extension and retraction initiated without
+            physical contact is preferred for everyday convenience
+          </li>
+        </ul>
         <a
           href="/Imprint__Exploring_Interaction_with_Dynamic_Interiors.pdf"
           target="_blank"
