@@ -597,6 +597,14 @@ export function Toolbar({
   const [hidden, setHidden] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [colorMenuOpen, setColorMenuOpen] = useState(false);
+  // Reset during render (not in an effect) when isMobile flips to desktop —
+  // avoids a stale open flyout with no trigger if the user goes mobile ->
+  // desktop -> mobile again. See https://react.dev/learn/you-might-not-need-an-effect
+  const [prevIsMobile, setPrevIsMobile] = useState(isMobile);
+  if (isMobile !== prevIsMobile) {
+    setPrevIsMobile(isMobile);
+    if (!isMobile) setColorMenuOpen(false);
+  }
   const [stampMenuOpen, setStampMenuOpen] = useState(false);
   const [needsScroll, setNeedsScroll] = useState(false);
   const [winWidth, setWinWidth] = useState(() =>
@@ -618,11 +626,6 @@ export function Toolbar({
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, []);
-
-  // Don't leave the flyout open (with no visible trigger) if the viewport grows
-  useEffect(() => {
-    if (!isMobile) setColorMenuOpen(false);
-  }, [isMobile]);
 
   // Whether the toolbar needs to scroll horizontally — compared against the
   // known TOOLBAR_WIDTH/MOBILE_TOOLBAR_WIDTH constants (not native overflow

@@ -25,11 +25,11 @@ const styles = {
   `,
 };
 
-const Mono = ({ children }: { children: String }) => {
+const Mono = ({ children }: { children: string }) => {
   return <span css={styles.mono}>{children}</span>;
 };
 
-const Serif = ({ children }: { children: String }) => {
+const Serif = ({ children }: { children: string }) => {
   return <span css={styles.serif}>{children}</span>;
 };
 
