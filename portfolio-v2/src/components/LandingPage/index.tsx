@@ -49,9 +49,11 @@ export function LandingPage({ tool }: Props) {
           <Name />
         </NameWrap>
         <Bio>
-          Full-stack engineer building <strong>agentic AI systems</strong> and{" "}
-          <strong>generative UI</strong> at <strong>Sayari</strong>. Previously
-          at <strong>The New York Times</strong>, building the shared{" "}
+          Software engineer on the <strong>feed team</strong> at{" "}
+          <strong>Substack</strong>. Most at home building for the{" "}
+          <strong>web</strong>, especially the platforms behind{" "}
+          <strong>media and publishing</strong>. Previously at{" "}
+          <strong>The New York Times</strong>, building the shared{" "}
           <strong>frontend platform</strong> behind newsroom apps: component
           libraries, a <strong>real-time collaborative editor</strong>, a
           GraphQL client. Before that <strong>iOS</strong> at{" "}

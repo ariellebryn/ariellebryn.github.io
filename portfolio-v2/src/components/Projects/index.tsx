@@ -62,17 +62,29 @@ const projects = [
   //     ),
   //   },
   {
-    name: "Sayari",
+    name: "Substack",
     category: "current role",
     description: (
       <ul>
         <li>
-          <b>current role: senior software engineer</b> building pre-production
-          agent harness, with a focus on generative ui subagents (generating
-          analytic dashboards and due diligence reporting)
+          <b>software engineer on the feed team</b>, building the web experience
+          for discovering and reading publications on Substack
+        </li>
+      </ul>
+    ),
+  },
+  {
+    name: "Sayari",
+    category: "previous role",
+    description: (
+      <ul>
+        <li>
+          senior software engineer; built the pre-production agent harness and
+          generative ui subagents for analytic dashboards and due diligence
+          reporting
         </li>
         <li>
-          previous work includes{" "}
+          earlier,{" "}
           <a
             href="https://sayari.com/platform/graph/#supply-chain-mapping:~:text=from%20the%20visualization.-,SUPPLY%20CHAIN%20MAPPING,-PREMIUM%20ADD%2DON"
             target="_blank"
@@ -101,30 +113,6 @@ const projects = [
     ),
   },
   {
-    name: "reader",
-    category: "side project",
-    description: (
-      <>
-        <ul>
-          <li>
-            chrome extension (private, built for a friend ✨) that tracks the
-            articles you read, finds connections in your reading patterns,
-            provides data visualizations
-          </li>
-          <li>
-            a monthly "wrapped" that shows your favorite authors, rabbit holes
-            you got into, etc
-          </li>
-          <li>
-            uses a local browser-based LLM to identify when a page is an
-            article, assign topics and tags, and build out "rabbit holes"
-          </li>
-        </ul>
-        (blog post pending)
-      </>
-    ),
-  },
-  {
     name: "NYT frontend platform",
     category: "previous role",
     description: (
@@ -142,28 +130,6 @@ const projects = [
           </li>
         </ul>
       </>
-    ),
-  },
-  {
-    name: "mosaicJS",
-    category: "side project",
-    description: (
-      <ul>
-        <li>
-          layout plugin that allows a developer to pin specific blocks in a grid
-          and have remaining blocks flow automatically around the pinned ones
-        </li>
-        <li>
-          originally built in jQuery, rebuilt with newer CSS grid functionality
-        </li>
-        <a
-          href="http://ariellechapin.com/mosaic/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          View it
-        </a>
-      </ul>
     ),
   },
   {
